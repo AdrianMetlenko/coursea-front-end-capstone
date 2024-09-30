@@ -1,4 +1,4 @@
-import bruschetta from "../../assets/bruschetta.jpg"
+import bruschetta from "../assets/bruschetta.jpg"
 import {Link} from "react-router-dom";
 
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
                     <h3>Sydney</h3>
                     <p>We are a family owned Fusion French restaurant, focused on traditional recipes served with a
                         modern twist.</p>
-                    <Link to="/Booking.js">
+                    <Link to="booking">
                         <button>Reserve Table</button>
                     </Link>
                 </div>
