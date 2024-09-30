@@ -38,10 +38,16 @@ header section {
     color: #EDEFEE;
 }
 
+h1, h2 {
+    color: #F4CE14;
+}
+
+h1 {
+    font-size: 40pt;
+}
 
 h2 {
-    color: #F4CE14;
-    font-size: 40pt;
+    font-size: 30pt;
 }
 
 h3 {
@@ -89,7 +95,7 @@ footer img {
     display: block;
 }
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     footer img {
         display: none;
     }

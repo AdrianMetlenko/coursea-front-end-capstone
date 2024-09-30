@@ -1,6 +1,7 @@
-import bruschetta from "../assets/bruschetta.jpg"
+import bruschetta from "../../assets/bruschetta.jpg"
+import {Link} from "react-router-dom";
 
-function Header() {
+function Home() {
     return (
         <header>
             <section>
@@ -9,7 +10,9 @@ function Header() {
                     <h3>Sydney</h3>
                     <p>We are a family owned Fusion French restaurant, focused on traditional recipes served with a
                         modern twist.</p>
-                    <button>Reserve a Table</button>
+                    <Link to="/Booking.js">
+                        <button>Reserve Table</button>
+                    </Link>
                 </div>
                 <img src={bruschetta} alt={'Bruschettas served on board'}/>
             </section>
@@ -17,4 +20,4 @@ function Header() {
     )
 }
 
-export default Header;
+export default Home;
