@@ -1,6 +1,10 @@
+import logo from "../assets/logo.jpg"
+
 function Nav() {
     return <nav>
-        <img src={'.logo.jpg'} alt="Little Lemon Logo"></img>
+        <div style={{alignItems: 'center', display: 'flex', padding: 20}}>
+            <img src={logo} alt="Little Lemon Logo"/>
+        </div>
         <ul>
             <li><a>Home</a></li>
             <li><a>About</a></li>
