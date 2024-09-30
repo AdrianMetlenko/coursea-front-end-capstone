@@ -1,43 +1,52 @@
 import {Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./pages/Home";
-import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import {useReducer} from "react";
 import BookingConfirmed from "./pages/BookingConfirmed";
+import BookingForm from "./components/BookingForm";
 
 function Main() {
     const navigate = useNavigate();
 
-    function fetchAPI(date) {
+    const seededRandom = (seed) => {
+        const m = 2 ** 35 - 31;
+        const a = 185852;
+        let s = seed % m;
+
+        return () => (s = (s * a) % m) / m;
+    };
+
+    const fetchAPI = (date) => {
         let result = [];
+        let random = seededRandom(date.getDate());
+
         for (let i = 17; i <= 23; i++) {
-            const random = Math.random()
-            if (random < 0.5) {
-                result.push(i + ':00');
-            } else {
-                result.push(i + ':30');
-            }
+            if (random() < 0.5) result.push(i + ":00");
+            if (random() < 0.5) result.push(i + ":30");
         }
+
         return result;
-    }
+    };
 
-    function submitAPI(formData) {
-        return true;
-    }
+    const submitAPI = (formData) => true;
 
-    function updateTimes(state, date) {
-        return {availableTimes: fetchAPI(new Date(date))}
-    }
+    const updateTimes = (availableTimes, date) => {
+        const response = fetchAPI(new Date(date));
+        return (response.length !== 0) ? response : availableTimes;
+    };
 
-    const initialState = {availableTimes: fetchAPI(new Date())}
-    const [availableTimes, dispatch] = useReducer(updateTimes, initialState);
+    const initializeTimes = initialAvailableTimes =>
+        [...initialAvailableTimes, ...fetchAPI(new Date())];
 
+    const [
+        availableTimes,
+        dispatchOnDateChange
+    ] = useReducer(updateTimes, [], initializeTimes);
 
-    function submitForm(formData) {
-        if (submitAPI(formData)) {
-            navigate('booking/confirmed')
-        }
-    }
+    const submitData = formData => {
+        const response = submitAPI(formData);
+        if (response) navigate('booking/confirmed')
+    };
 
     return (
         <main>
@@ -45,7 +54,11 @@ function Main() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="booking">
                     <Route index
-                           element={<Booking state={availableTimes} dispatch={dispatch} submitForm={submitForm}/>}/>
+                           element={<BookingForm
+                               availableTimes={availableTimes}
+                               dispatchOnDateChange={dispatchOnDateChange}
+                               submitData={submitData}
+                           />}/>
                     <Route path={'confirmed'} element={<BookingConfirmed/>}/>
                 </Route>
                 <Route path="*" element={<NotFound/>}/>
