@@ -30,7 +30,7 @@ function Main() {
     }
 
     const initialState = {availableTimes: fetchAPI(new Date())}
-    const [state, dispatch] = useReducer(updateTimes, initialState);
+    const [availableTimes, dispatch] = useReducer(updateTimes, initialState);
 
 
     function submitForm(formData) {
@@ -45,7 +45,7 @@ function Main() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="booking">
                     <Route index
-                           element={<Booking state={state} dispatch={dispatch} submitForm={submitForm}/>}/>
+                           element={<Booking state={availableTimes} dispatch={dispatch} submitForm={submitForm}/>}/>
                     <Route path={'confirmed'} element={<BookingConfirmed/>}/>
                 </Route>
                 <Route path="*" element={<NotFound/>}/>

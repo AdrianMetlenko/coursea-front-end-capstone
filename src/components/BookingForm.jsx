@@ -51,7 +51,8 @@ function BookingForm({submitForm, dispatch, state}) {
                             </select>
                         </div>
                         <div>
-                            <input aria-label="On Click" type={"submit"} value={"Make Your Reservation"}></input>
+                            <input aria-label="Make Your Reservation" type={"submit"}
+                                   value={"Make Your Reservation"}></input>
                         </div>
                     </fieldset>
                 </form>
