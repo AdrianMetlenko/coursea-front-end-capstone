@@ -110,6 +110,7 @@ function BookingForm({submitData, dispatchOnDateChange, availableTimes}) {
                     <button
                         className="button-primary"
                         type="submit"
+                        aria-label="On Click"
                         disabled={!areAllFieldsValid()}
                     >
                         Make your reservation

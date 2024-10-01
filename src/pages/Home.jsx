@@ -11,7 +11,7 @@ function Home() {
                     <p>We are a family owned Fusion French restaurant, focused on traditional recipes served with a
                         modern twist.</p>
                     <Link to="booking">
-                        <button>Reserve Table</button>
+                        <button aria-label="On Click">Reserve Table</button>
                     </Link>
                 </div>
                 <img src={bruschetta} alt={'Bruschettas served on board'}/>
